@@ -1,0 +1,53 @@
+REST API - JSON
+
+Createing Hybrid Server
+
+
+GET/users  - HTML Document Render like home page - done
+GET/api/users - list all users -JSON Data   using api we show the all users data only - done
+
+GET/users/1 - Get the user of id 1  - done
+GET/users/:id -  // dynamic path parameters - done
+
+POST/users - Create New user //this is problematic requestes 
+
+PATCH/users/1 - Edit User //this is problematic requestes 
+
+DELETE/1 - Delete user of id 1 //this is problematic requestes 
+
+
+// Use Mongoose npm packeg for mongodb
+for use schema for model ,interface => type
+go to mogodb on windos open and create server and after that add this server link to nodejs
+
+// for big rest api we create folder to manage model , scehma ,routes,pages,
+using controllers , models,routes,views
+
+
+// use ejs tempeltet engile for server side renedr html code 
+const path = require('path')
+const URL = require("./models/url")
+
+//Set View Engine For Server Side Rendering
+app.set("view engine", "ejs")
+
+// where your ejs file  // use path module
+app.set('views',path.resolve('./views'))
+
+//server side render page route
+app.get('/test',async (req,res) => {
+    const allUrls = await URL.find({})
+    return res.render('home',{ //we can send the data to page 
+        urls:allUrls
+    })
+})
+// home.ejs
+<% urls.forEach(url => { %>
+     <li><%= url.shortId %> </li>
+    <% }) %>
+
+create staticRoute file in route folder for all html routes
+
+// for authtication we use uid npm package for unique id  as session id
+
+//create service folder for utlities like id store sesions => auth.js
